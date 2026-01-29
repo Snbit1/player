@@ -71,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({
   const closeStyle: React.CSSProperties = {
     position: "absolute",
     top: 8,
-    right: 8,
+    right: 12,
     background: "rgba(0,0,0,0.6)",
     border: "none",
     color: "#fff",
@@ -101,16 +101,16 @@ const Modal: React.FC<ModalProps> = ({
       />
       <div style={controlsStyle}>
         <button onClick={isPlaying ? onPause : onPlay}>
-          {isPlaying ? "⏸️" : "▶️"}
+          {isPlaying ? "⏸" : "▶"}
         </button>
         {minimized ? (
-          <button onClick={onRestore}>⬆️</button>
+          <button onClick={onRestore}>⬆</button>
         ) : (
-          <button onClick={onMinimize}>⬇️</button>
+          <button onClick={onMinimize}>⬇</button>
         )}
       </div>
       <button onClick={handleClose} style={closeStyle}>
-        ✕
+        X
       </button>
     </div>
   );

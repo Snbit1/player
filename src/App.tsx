@@ -14,7 +14,6 @@ function App() {
 
   return (
     <>
-      {/* Постер/иконка видео */}
       {!state.matches("playing") &&
         !state.matches("paused") &&
         !state.matches("minimizedPlaying") &&
@@ -25,8 +24,6 @@ function App() {
             }}
           />
         )}
-
-      {/* Видео-плеер */}
       <Modal
         visible={
           state.matches("playing") ||

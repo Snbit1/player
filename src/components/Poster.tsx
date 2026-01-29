@@ -16,11 +16,11 @@ const Poster = ({ onClick }: PosterProps) => {
         justifyContent: "center",
         cursor: "pointer",
         margin: "120px auto",
-        color: "#fff",
+        color: "#7c3aed",
         fontSize: 64,
       }}
     >
-      ▶️
+      ▶
     </div>
   );
 };
