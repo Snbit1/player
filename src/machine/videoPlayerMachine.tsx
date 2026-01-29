@@ -2,39 +2,40 @@ import { createMachine } from "xstate";
 
 export const videoPlayerMachine = createMachine({
   id: "videoPlayer",
-  initial: "closed",
+  initial: "idle",
   states: {
-    closed: {
-      on: { OPEN: "open" },
-    },
-    open: {
-      initial: "playing",
-      states: {
-        playing: {
-          on: { PAUSE: "paused" },
-        },
-        paused: {
-          on: { PLAY: "playing" },
-        },
-      },
+    idle: {
       on: {
-        CLOSE: "closed",
-        MINIMIZE: "minimized",
+        OPEN: "playing",
+        OPEN_PLAY: "playing",
       },
     },
-    minimized: {
-      initial: "playing",
-      states: {
-        playing: {
-          on: { PAUSE: "paused" },
-        },
-        paused: {
-          on: { PLAY: "playing" },
-        },
-      },
+    playing: {
       on: {
-        RESTORE: "open",
-        CLOSE: "closed",
+        PAUSE: "paused",
+        MINIMIZE: "minimizedPlaying",
+        CLOSE: "idle",
+      },
+    },
+    paused: {
+      on: {
+        PLAY: "playing",
+        CLOSE: "idle",
+        MINIMIZE: "minimizedPaused",
+      },
+    },
+    minimizedPlaying: {
+      on: {
+        PAUSE: "minimizedPaused",
+        RESTORE: "playing",
+        CLOSE: "idle",
+      },
+    },
+    minimizedPaused: {
+      on: {
+        PLAY: "minimizedPlaying",
+        RESTORE: "paused",
+        CLOSE: "idle",
       },
     },
   },
